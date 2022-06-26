@@ -94,6 +94,9 @@ height: auto;}
     line-height: 1.14;
     letter-spacing: 0.02em;
     text-decoration: none;
+
+    position: relative;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .site-nav .link:hover,
 .site-nav .link:focus {
@@ -101,6 +104,20 @@ height: auto;}
 }
 
 .site-nav .link.current {color: var(--accent-color);}
+
+.site-nav .item .link.current::after {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    
+}
 
 /* contacts */
 .contacts {
@@ -125,6 +142,8 @@ height: auto;}
     line-height: 1.14;
     letter-spacing: 0.02em;
     text-decoration: none;
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .contacts .link:hover,
 .contacts .link:focus {
@@ -162,7 +181,7 @@ height: auto;}
     text-transform: uppercase;
 }
 /* услуги*/
-.benefits {padding-top: 0;}
+
 .section-title {
     margin-bottom: 50px;
     color: var(--primary-text-color);
@@ -195,12 +214,6 @@ height: auto;}
     color: var(--desc-text-color);
     line-height: 1.71;}
 
-.pictures { display: flex;
-justify-content: space-between;}
-
-.pictures .item+.item {
-    margin-left: 30px;
-}
 .feature-box {
     display: flex;
     justify-content: center;
@@ -211,6 +224,39 @@ justify-content: space-between;}
     background-color: var(--accent-background-color);
     border-radius: 4px;
 }
+
+
+/* Чем мы занимаемся */
+.benefits {
+    padding-top: 0;
+}
+
+.pictures { display: flex;
+justify-content: space-between;}
+
+.pictures .item {position: relative;}
+
+.pictures .item+.item {
+    margin-left: 30px;
+}
+
+.pictures .item .title {
+    width: 100%;
+    height: 70px;
+    padding-top: 27px;
+    color: var(--primary-white-color);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.14;
+    text-align: center;
+    text-transform: uppercase;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(47, 48, 58, 0.8);
+}
+
 /* Команда */
 .bgr-accent {
     background-color: var(--accent-background-color);}
@@ -260,6 +306,9 @@ justify-content: space-between;}
     background-size: 20px;
     background-position: 50% 50$;
     fill: var(--icon-color);
+
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) ;
 }
 
 .link-icon:hover{
@@ -280,6 +329,9 @@ justify-content: space-between;}
     border: 1px solid var(--icon-color);
     border-radius: 4px;
     fill: var(--icon-color);
+
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+     border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .group .company +.company {
@@ -290,11 +342,6 @@ justify-content: space-between;}
     border: 1px solid var(--accent-color);
     fill: var(--accent-color);
 }
-
-.company-logo{
-
-}
-
 
 /* Button */
 button {
@@ -320,6 +367,11 @@ button {
     font-weight: 500;
     font-size: 16px;
     line-height: 1.63;
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
 
 } 
 .button.secondary:hover,
@@ -370,10 +422,55 @@ button {
 .work-box .link {
     display: block;
     text-decoration: none;
+    
+
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .work-box .link:hover,
 .work-box .link:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.work-box .link:hover .thumb::before{
+    transform: translateY(0);
+}
+.thumb {position: relative;
+    overflow: hidden;
+}
+
+.thumb::before {
+    display: inline-block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 150, 243, 0.9);
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(100%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    opacity: 1;
+
+}
+.thumb .desc {
+    display: inline-block;
+    padding: 63px 24px;
+    font-size: 18px;
+    line-height: 1.56;
+    color: var(--primary-white-color);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    opacity: 0;
+}
+.link:hover .thumb .desc{
+   opacity: 1;
 }
 .work-box .title {
     margin-bottom: 4px;
@@ -454,6 +551,9 @@ address {
     background-position: 50% 50$;
     background-color: rgba(255, 255, 255, 0.1);;
     fill: var(--primary-white-color);
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .socials-box .socials .link-icon:hover {
